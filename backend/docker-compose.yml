@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    express:
+        build: .
+        ports: 
+            - "5000:8080"
+        container_name: "express"
+    mongo:
+        image: "mongo"
+        ports: 
+            - "27017:27017"
+        container_name: "mongo"

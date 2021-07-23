@@ -3,7 +3,7 @@ services:
     express:
         container_name: "express-container"
         build: .
-        image: "express-app:1.0.0"
+        image: "krit/express:1.0.0"
         networks:
             - sub-etha
     mongo:
@@ -14,13 +14,13 @@ services:
     react:
         container_name: "react-container"
         build: ../frontend
-        image: "react-app:1.0.0"
+        image: "krit/react:1.0.0"
         networks:
             - sub-etha
     revproxy:
         container_name: "revproxy-container"
         build: ../revproxy
-        image: "revproxy-app:1.0.0"
+        image: "krit/revproxy:1.0.0"
         networks:
             - sub-etha
         ports:

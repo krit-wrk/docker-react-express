@@ -1,6 +1,8 @@
 "use strict";
 
 const express = require("express");
+const bodyParser = require("body-parser");
+
 const { MongoClient } = require("mongodb");
 
 // Constants
@@ -21,26 +23,21 @@ async function main() {
   const collection = db.collection("documents");
 
   const app = express();
+  app.use(bodyParser.json());
+
   app.get("/api/hello", (req, res) => {
     res.send("Hello World From Server");
   });
-  app.get("/api/documents", async (req, res) => {
-    const data = await collection.find();
+  app.get("/api/todos", async (req, res) => {
+    const data = await collection.find().toArray();
     res.send(data);
   });
-  app.post("/api/documents", async (req, res) => {
-    console.log("/api/documents");
-    const insertResult = await collection.insertMany([
-      { a: 1 },
-      { a: 2 },
-      { a: 3 },
-    ]);
-    console.log("Inserted documents =>", insertResult);
-    res.send("Inserted documents");
+  app.post("/api/todos", async (req, res) => {
+    const insertResult = await collection.insertOne(req.body);
+    res.send(insertResult.insertedId.toHexString());
   });
 
   app.listen(PORT, HOST);
   console.log(`Running on http://${HOST}:${PORT}`);
 }
-throw Error("asd");
 main();

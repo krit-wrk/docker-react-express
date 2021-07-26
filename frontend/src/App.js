@@ -38,6 +38,7 @@ function App() {
             onClick={async () => {
               const res = await axios.post("./api/todos", { text: todo });
               setTodo("");
+              onLanding();
             }}
           >
             add

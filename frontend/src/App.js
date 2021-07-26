@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -13,8 +14,8 @@ function App() {
         </p>
         <button
           onClick={async () => {
-            const res = await fetch("./api/hello");
-            setText(res.text());
+            const res = await axios.get("./api/hello");
+            setText(res.data);
           }}
         >
           Call hello

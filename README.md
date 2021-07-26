@@ -21,3 +21,7 @@ cd frontend
 yarn server
 yarn start
 ```
+
+## backend dev
+
+- add mock in `./backend/mock/import.sh`

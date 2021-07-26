@@ -14,7 +14,7 @@ services:
     mongo:
         build:
             context: . 
-            dockerfile:  ./Dockerfile.mock
+            dockerfile:  ./Dockerfile-mongo.mock
         container_name: "mongo-container"
         image: "krit/mongo:1.0.0"
         networks:

@@ -12,8 +12,11 @@ services:
         ports:
             - "8080:8080"
     mongo:
+        build:
+            context: . 
+            dockerfile:  ./Dockerfile.mock
         container_name: "mongo-container"
-        image: "mongo"
+        image: "krit/mongo:1.0.0"
         networks:
             - sub-etha
 networks:

@@ -1,12 +1,20 @@
 version: "3.9"
 services:
     express:
+        container_name: "express-container"
         build: .
-        ports: 
-            - "5000:8080"
-        container_name: "express"
+        volumes: 
+            - .:/usr/src/app
+            - ./node_modules:/usr/src/app/node_modules
+        image: "krit/express:1.0.0"
+        networks:
+            - sub-etha
+        ports:
+            - "8080:8080"
     mongo:
+        container_name: "mongo-container"
         image: "mongo"
-        ports: 
-            - "27017:27017"
-        container_name: "mongo"
+        networks:
+            - sub-etha
+networks:
+  sub-etha:
